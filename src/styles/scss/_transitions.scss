@@ -1,0 +1,77 @@
+//
+// Fade in, slide from left
+//
+// Transition classes
+.fade-slide-left-enter-active, .fade-slide-left-leave-active, .fade-slide-left-move {
+	transition: all $transition-quicker ease-in-out;
+}
+
+// Start/End state
+.fade-slide-left-enter, .fade-slide-left-leave-to {
+	opacity: 0;
+	transform: translateX(-12rem);
+}
+
+// Mid state
+.fade-slide-left-enter-to, .fade-slide-left-leave {
+	opacity: 1;
+	transform: translateX(0rem);
+}
+
+//
+// Fade in, slide from right
+//
+// Transition classes
+.fade-slide-right-enter-active, .fade-slide-right-leave-active, .fade-slide-right-move {
+	transition: all $transition-quicker ease-in-out;
+}
+
+// Start/End state
+.fade-slide-right-enter, .fade-slide-right-leave-to {
+	opacity: 0;
+	transform: translateX(12rem);
+}
+
+// Mid state
+.fade-slide-right-enter-to, .fade-slide-right-leave {
+	opacity: 1;
+	transform: translateX(0rem);
+}
+
+//
+// Fade in, slide from bottom
+//
+// Transition classes
+.fade-slide-up-enter-active, .fade-slide-up-leave-active, .fade-slide-up-move {
+	transition: all $transition-quicker ease-in-out;
+}
+
+// Start/End state
+.fade-slide-up-enter, .fade-slide-up-leave-to {
+	opacity: 0;
+	transform: translateY(5rem);
+}
+
+// Mid state
+.fade-slide-up-enter-to, .fade-slide-up-leave {
+	opacity: 1;
+	transform: translateY(0rem);
+}
+
+//
+// Fade in
+//
+// Transition classes
+.fade-enter-active, .fade-leave-active, .fade-move {
+	transition: all $transition-quicker ease-in-out;
+}
+
+// Start/End state
+.fade-enter, .fade-leave-to {
+	opacity: 0;
+}
+
+// Mid state
+.fade-enter-to, .fade-leave {
+	opacity: 1;
+}

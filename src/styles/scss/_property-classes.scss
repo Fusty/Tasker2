@@ -1,0 +1,48 @@
+///////////////////////////////////////////////////////////////
+//
+//		Basically just css properties as classes.
+//		Definitely an anti-pattern.
+//		TODO:  Eliminate the need for these
+//
+///////////////////////////////////////////////////////////////
+@for $i from 0 through 40 {
+	.min-width-#{$i} {
+		min-width: #{$i}rem;
+	}
+}
+
+@for $i from 0 through 10 {
+	.margin-top-#{$i} {
+		margin-top: #{$i}rem;
+	}
+}
+
+@for $i from 0 through 10 {
+	.margin-bottom-#{$i} {
+		margin-bottom: #{$i}rem;
+	}
+}
+
+@for $i from 0 through 10 {
+	.margin-left-#{$i} {
+		margin-left: #{$i}rem;
+	}
+}
+
+@for $i from 0 through 10 {
+	.margin-right-#{$i} {
+		margin-right: #{$i}rem;
+	}
+}
+
+.grow {
+	flex-grow: 1;
+}
+
+.no-grow {
+	flex-grow: 0;
+}
+
+.baseline {
+	align-content: baseline;
+}

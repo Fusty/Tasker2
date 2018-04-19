@@ -1,0 +1,403 @@
+@import "variables";		// Misc variables
+@import "colors";			// Color variables and generic color classes
+@import "poptart";			// Alert toaster at bottom of page
+@import "transitions";		// Animations and transitions
+@import "task-list";		// Task-list specific styles
+@import "task-card";		// Task-card specific styles
+@import "property-classes";	// Utility classes that mimic css properties
+@import "modal";	// Utility classes that mimic css properties
+
+* {
+	box-sizing : border-box;
+}
+
+body {
+	background: darken($dark1, 8%);
+	font-family: $font-family;
+	margin: 0px;
+	color: $white;
+}
+
+#app {
+	min-height: 100vh;
+	display: flex;
+	flex-flow: column nowrap;
+	
+	&>header {
+		flex: 0 0 auto;
+	}
+	
+	&>main {
+		margin: 1rem;
+		flex: 1 0 auto;
+	}
+	
+	&>footer {
+		background: darken($dark1, 10%);
+		color: $light1;
+		height: 8rem;
+		padding: 1rem;
+		flex: 0 0 auto;
+	}
+}
+
+ul {
+	-webkit-margin-before: 0px;
+	-webkit-margin-after: 0px;
+	list-style: none;
+}
+
+input {
+	outline: none;
+	color: $white;
+	background:none;
+	border: none;
+	border-bottom: 2px solid $white;
+	
+	&.light2 {
+		color: $light2;
+		border-bottom: 2px dashed darken($light2, 10%);
+		&::placeholder {
+			color: darken($light2, 10%);
+		}
+	}
+	
+	&.light1 {
+		color: $light1;
+		border-bottom: 2px dashed darken($light1, 20%);
+		&::placeholder {
+			color: darken($light1, 20%);
+		}
+	}
+	
+	&.danger1 {
+		color: $danger1;
+		border-bottom: 2px dashed $danger1;
+		&::placeholder {
+			color: darken($danger1, 20%);
+		}
+	}
+	
+	&.blue {
+		color: $neutral1;
+		border-bottom: 2px solid $neutral1;
+	}
+	
+	&.big {
+		font-size: 2rem;
+		padding: 0.25rem;
+	}
+	
+	&.full-width {
+		width: 100%;
+	}
+	
+	&.more-margin {
+		margin-top: 0.75rem;
+		margin-bottom: 0.75rem;
+	}
+	
+	&.no-border {
+		border: none;
+	}
+}
+
+.row {
+	width: 100%;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	&>* {
+		flex: 0 0 auto;
+	}
+}
+
+@for $i from 1 through 12 {
+	.width-#{$i} {
+		flex: 1 0 auto;
+		width: calc(100%*#{$i}/12 - #{$gutter});
+	}
+}
+
+// 
+// NAV STUFF
+// 
+#app>header {
+	height: 5rem;
+	background: $dark1;
+	
+	.nav {
+		display: flex;
+		flex-flow: row nowrap;
+		justify-content: space-around;
+		align-items: baseline;
+		
+		a {
+			text-decoration: none;
+		}
+		
+		@media(min-width: $breakpoint-small) {
+			.logo {
+				height: 5rem;
+				display: block;
+				flex: 0 0 auto;
+				background: $danger1;
+				color: $light1;
+				font-size: 2.5rem;
+				font-weight: bold;
+				padding: 1rem 2rem 1rem 2rem;
+			}
+			
+			.logo-sm {
+				display: none;
+			}
+			
+			.title-input {
+				flex: 1 0 auto;
+				padding: 0 3em 0 3em;
+				
+				input {
+					width: 80%;
+					font-size: 2rem;
+					&::placeholder {
+						color: darken($light1, 20%);
+					}
+				}	min-width: 17rem;
+				
+			}
+			
+			.export-data {
+				height: 5rem;
+				display: block;
+				flex: 0 0 auto;
+				background: $danger1;
+				color: $light1;
+				font-size: 2.5rem;
+				font-weight: bold;
+				padding: 1rem 2rem 1rem 2rem;
+				align-self: stretch;
+				border: none;
+				border-radius: 0px;
+				&:hover {
+					background: darken($danger1, 10%);
+				}
+			}
+		}
+		
+		@media(max-width: $breakpoint-small) {
+			.logo {
+				display: none;
+				flex: 0 0 auto;
+				background: $danger1;
+				color: $light1;
+				font-size: 2.5rem;
+				font-weight: bold;
+				padding: 1rem 2rem 1rem 2rem;
+			}
+			
+			.logo-sm {
+				display: block;
+				flex: 0 0 auto;
+				background: $danger1;
+				color: $light1;
+				font-size: 2.5rem;
+				font-weight: bold;
+				padding: 1rem 2rem 1rem 2rem;
+			}
+			
+			.title-input {
+				flex: 1 0 auto;
+				padding: 0 3em 0 3em;
+				
+				input {
+					width: 100%;
+					font-size: 2rem;
+				}
+			}
+		}
+	}
+}
+
+// Shared Stuff
+button {
+	background: $neutral1;
+	border: 2px solid $neutral1;
+	border-radius: $border-radius;
+	padding: 0.5rem 0.725rem 0.5rem 0.725rem;
+	color: $dark1;
+	font-weight: bold;
+	outline: none;
+	cursor: pointer;
+	
+	&:hover {
+		background: darken($neutral1, 15%);
+		border: 2px solid darken($neutral1, 15%);
+	}
+	&.outline {
+		background: none;
+		color: $neutral1;
+		&:hover {
+			color: darken($neutral1, 15%);
+		}
+	}
+	
+	&.light1 {
+		background: $light1;
+		border: 2px solid $light1;
+		color: $dark1;
+		&:hover {
+			background: darken($light1, 15%);
+			border: 2px solid darken($light1, 15%);
+		}
+		&.outline {
+			background: none;
+			color: $light1;
+			&:hover {
+				color: darken($light1, 15%);
+			}
+		}
+	}
+	
+	&.danger1 {
+		background: $danger1;
+		border: 2px solid $danger1;
+		color: $dark1;
+		&:hover {
+			background: darken($danger1, 15%);
+			border: 2px solid darken($danger1, 15%);
+		}
+		&.outline {
+			background: none;
+			color: $danger1;
+			&:hover {
+				color: darken($danger1, 15%);
+			}
+		}
+	}
+	
+	&.light2 {
+		background: $light2;
+		border: 2px solid $light2;
+		color: $dark1;
+		&:hover {
+			background: darken($light2, 20%);
+			border: 2px solid darken($light2, 20%);
+		}
+		&.outline {
+			background: none;
+			color: $light2;
+			&:hover {
+				color: darken($light2, 20%);
+			}
+		}
+	}
+	
+	&.dark {
+		background: $dark1;
+		border: 2px solid $dark1;
+		color: darken($dark1, 8%);
+		&:hover {
+			background: darken($dark1, 5%);
+			border: 2px solid darken($dark1, 5%);
+		}
+		&.outline {
+			background: none;
+			color: $dark1;
+		}
+	}
+	
+	&.full-width {
+		width: 100%;
+	}
+}
+
+.border-group {
+	display: flex;
+	
+	&.border-group--horizontal {
+		flex-direction: row;
+		&>*:first-child {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		
+		&>*:not(:first-child):not(:last-child), &>span>*:not(:first-child):not(:last-child), &>span>*:first-child {
+			border-radius: 0;
+		}
+		
+		&>*:last-child, &>span>*:last-child, &>span>*:only-child {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		
+		&>*:only-child {
+			border-radius: $border-radius;
+		}
+	}
+	
+	&.border-group--vertical {
+		flex-direction: column;
+		&>*:first-child {
+			border-bottom-left-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		
+		&>*:not(:first-child):not(:last-child), &>span>*:not(:first-child):not(:last-child), &>span>*:first-child {
+			border-radius: 0;
+			border-top: none;
+		}
+		
+		&>*:last-child:not(:only-child), &>span>*:last-child:not(:only-child), &>span>*:only-child {
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			border-top: none;
+		}
+		
+		&>*:only-child {
+			border-radius: $border-radius;
+		}
+	}
+}
+
+.centered-row {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+}
+
+.stopwatch {
+	font-size: 2.5rem;
+	color: $light2;
+	
+	&.timer-in-progress {
+		color: $danger1;
+	}
+}
+
+.no-complete-tasks, .no-incomplete-tasks, .empty-task-stack {
+	width: 85%;
+	border: 2px dashed darken($dark1, 20%);
+	border-radius: $border-radius;
+	padding: 2rem;
+	margin: 1rem 0 0 0;
+	color: $light2;
+	font-weight: bold;
+	text-align: center;
+}
+
+.no-left-margin {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+.space-between {
+	justify-content: space-between;
+}
+
+.pull-right {
+	text-align: right;
+}
+
+.inline-editable {
+	font-size: 1rem;
+}
